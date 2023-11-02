@@ -1,5 +1,5 @@
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <ColorSchemeScript forceColorScheme="dark" />
       </head>
       <body>
         <MantineProvider defaultColorScheme="dark">{children}</MantineProvider>
