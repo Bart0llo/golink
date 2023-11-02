@@ -11,6 +11,11 @@ import {
 import style from "./style.module.css";
 import { BsLink45Deg } from "react-icons/bs";
 import { FaMagic } from "react-icons/fa";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'GoLink'
+}
 
 export default function Home() {
   return (
