@@ -11,13 +11,15 @@ import style from "./style.module.css";
 import { BsLink45Deg } from "react-icons/bs";
 import { FaMagic } from "react-icons/fa";
 import { Metadata } from "next";
+import MotionSlieIn from "./components/MotionSlideIn";
 
 export const metadata: Metadata = {
-  title: 'GoLink'
-}
+  title: "GoLink",
+};
 
 export default function Home() {
   return (
+    <MotionSlieIn>
       <Container className={style.mainBox}>
         <Box className={style.content}>
           <Image p="sm" src="/logo.svg" alt="Logo" maw={270} fit="contain" />
@@ -36,10 +38,16 @@ export default function Home() {
             placeholder="Paste your link here"
             leftSection={<BsLink45Deg size={30} />}
           />
-          <Button color="pink.6" size="md" leftSection={<FaMagic />}>
+          <Button
+            className={style.buttonShort}
+            color="pink.6"
+            size="md"
+            leftSection={<FaMagic />}
+          >
             Short link
           </Button>
         </Box>
       </Container>
+    </MotionSlieIn>
   );
 }

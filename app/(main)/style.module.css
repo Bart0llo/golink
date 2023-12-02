@@ -21,6 +21,15 @@
   gap: 1rem;
 }
 
+.buttonShort {
+  transition: all 0.4s ease-out;
+}
+
+.buttonShort:hover {
+  transform: scale(1.08);
+}
+
+
 .linkInput:hover {
   border: 1px solid var(--mantine-color-pink-filled-hover);
 }
