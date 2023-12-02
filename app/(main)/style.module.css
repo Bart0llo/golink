@@ -1,3 +1,12 @@
+.backgroundImg {
+  background-image: url("/bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+}
+
 .mainBox {
   min-height: 100dvh;
   display: flex;

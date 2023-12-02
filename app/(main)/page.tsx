@@ -5,7 +5,6 @@ import {
   Image,
   Text,
   Input,
-  BackgroundImage,
   Button,
 } from "@mantine/core";
 import style from "./style.module.css";
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <BackgroundImage src="/bg.svg">
       <Container className={style.mainBox}>
         <Box className={style.content}>
           <Image p="sm" src="/logo.svg" alt="Logo" maw={270} fit="contain" />
@@ -43,6 +41,5 @@ export default function Home() {
           </Button>
         </Box>
       </Container>
-    </BackgroundImage>
   );
 }
