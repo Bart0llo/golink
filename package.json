@@ -1,22 +1,27 @@
 {
+  "name": "@golink/frontend",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "build:all": "turbo run build",
-    "build:backend": "cd apps/backend && npm run build",
-    "build:frontend": "cd apps/frontend && npm run build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.1.7",
+    "@mantine/hooks": "^7.1.7",
+    "next": "14.0.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "turbo": "latest"
-  },
-  "name": "golink",
-  "packageManager": "npm@10.1.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.1",
+    "typescript": "^5"
+  }
 }
