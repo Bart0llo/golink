@@ -71,7 +71,7 @@ export default function ShortForm() {
             w="100%"
             size="lg"
             readOnly
-            value={`https://2bin.net/${short.shortID}`}
+            value={`${process.env.NEXT_PUBLIC_REDIRECT_URL}/${short.shortID}`}
           />
         </Input.Wrapper>
       )}
@@ -89,7 +89,7 @@ export default function ShortForm() {
             Next short
           </Button>
 
-          <CopyButton value={`https://2bin.net/${short.shortID}`}>
+          <CopyButton value={`${process.env.NEXT_PUBLIC_REDIRECT_URL}/${short.shortID}`}>
             {({ copied, copy }) => (
               <Button
                 color={copied ? "teal" : "pink.6"}
