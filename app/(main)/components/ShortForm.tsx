@@ -11,7 +11,7 @@ import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 
 export default function ShortForm() {
-  const [short, setShort] = useState<CreateShortUrl>();
+  const [short, setShort] = useState();
 
   const form = useForm({
     initialValues: {
@@ -71,12 +71,15 @@ export default function ShortForm() {
       {short ? (
         <Group justify="center">
           <Button
-            className={style.buttonShort}
             color="pink.6"
             size="md"
             leftSection={<FaMagic />}
+            onClick={() => {
+              setShort("");
+              form.reset();
+            }}
           >
-            Short next
+            Next short
           </Button>
 
           <CopyButton value={`https://2bin.net/${short.shortID}`}>
@@ -95,7 +98,6 @@ export default function ShortForm() {
       ) : (
         <Button
           type="submit"
-          className={style.buttonShort}
           color="pink.6"
           size="md"
           leftSection={<FaMagic />}
