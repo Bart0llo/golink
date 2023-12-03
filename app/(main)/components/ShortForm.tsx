@@ -8,8 +8,11 @@ import { useForm } from "@mantine/form";
 import { CreateShortUrl } from "@/app/_types/short";
 import { createShort } from "@/app/_services/short";
 import { notifications } from "@mantine/notifications";
+import { useState } from "react";
 
 export default function ShortForm() {
+  const [short, setShort] = useState<CreateShortUrl>();
+
   const form = useForm({
     initialValues: {
       url: "",
@@ -26,33 +29,43 @@ export default function ShortForm() {
         withCloseButton: false,
         autoClose: true,
       });
+
+      return;
     }
+
+    setShort(res.data);
   };
 
   return (
-    <form
-      className={style.form}
-      onSubmit={form.onSubmit((values) => formShort(values))}
-    >
-      <Input
-        name="url"
-        classNames={{ input: style.linkInput }}
-        w="100%"
-        size="lg"
-        placeholder="Paste your link here"
-        leftSection={<BsLink45Deg size={30} />}
-        required
-        {...form.getInputProps("url")}
-      />
-      <Button
-        type="submit"
-        className={style.buttonShort}
-        color="pink.6"
-        size="md"
-        leftSection={<FaMagic />}
-      >
-        Short link
-      </Button>
-    </form>
+    <div className={style.form}>
+      {!short ? (
+        <form
+          className={style.form}
+          onSubmit={form.onSubmit((values) => formShort(values))}
+        >
+          <Input
+            name="url"
+            classNames={{ input: style.linkInput }}
+            w="100%"
+            size="lg"
+            placeholder="Paste your link here"
+            leftSection={<BsLink45Deg size={30} />}
+            required
+            {...form.getInputProps("url")}
+          />
+          <Button
+            type="submit"
+            className={style.buttonShort}
+            color="pink.6"
+            size="md"
+            leftSection={<FaMagic />}
+          >
+            Short link
+          </Button>
+        </form>
+      ) : (
+        <div>sdf</div>
+      )}
+    </div>
   );
 }
