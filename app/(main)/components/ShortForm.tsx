@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, Input } from "@mantine/core";
+import { Button, CopyButton, Group, Input } from "@mantine/core";
 import { BsLink45Deg } from "react-icons/bs";
-import { FaMagic } from "react-icons/fa";
+import { FaCopy, FaMagic } from "react-icons/fa";
 import style from "../style.module.css";
 import { useForm } from "@mantine/form";
 import { CreateShortUrl } from "@/app/_types/short";
@@ -37,35 +37,72 @@ export default function ShortForm() {
   };
 
   return (
-    <div className={style.form}>
-      {!short ? (
-        <form
-          className={style.form}
-          onSubmit={form.onSubmit((values) => formShort(values))}
-        >
+    <form
+      className={style.form}
+      onSubmit={form.onSubmit((values) => formShort(values))}
+    >
+      <Input
+        name="url"
+        classNames={{ input: style.linkInput }}
+        w="100%"
+        size="lg"
+        placeholder="Paste your link here"
+        leftSection={<BsLink45Deg size={30} />}
+        required
+        readOnly={short}
+        {...form.getInputProps("url")}
+      />
+      {short && (
+        <Input.Wrapper w="100%">
           <Input
-            name="url"
+            styles={{
+              input: {
+                textAlign: "center",
+              },
+            }}
             classNames={{ input: style.linkInput }}
             w="100%"
             size="lg"
-            placeholder="Paste your link here"
-            leftSection={<BsLink45Deg size={30} />}
-            required
-            {...form.getInputProps("url")}
+            readOnly
+            value={`https://2bin.net/${short.shortID}`}
           />
+        </Input.Wrapper>
+      )}
+      {short ? (
+        <Group justify="center">
           <Button
-            type="submit"
             className={style.buttonShort}
             color="pink.6"
             size="md"
             leftSection={<FaMagic />}
           >
-            Short link
+            Short next
           </Button>
-        </form>
+
+          <CopyButton value={`https://2bin.net/${short.shortID}`}>
+            {({ copied, copy }) => (
+              <Button
+                color={copied ? "teal" : "pink.6"}
+                size="md"
+                onClick={copy}
+                leftSection={<FaCopy />}
+              >
+                {copied ? "Copied url" : "Copy url"}
+              </Button>
+            )}
+          </CopyButton>
+        </Group>
       ) : (
-        <div>sdf</div>
+        <Button
+          type="submit"
+          className={style.buttonShort}
+          color="pink.6"
+          size="md"
+          leftSection={<FaMagic />}
+        >
+          Short link
+        </Button>
       )}
-    </div>
+    </form>
   );
 }
