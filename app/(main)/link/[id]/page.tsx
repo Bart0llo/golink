@@ -1,19 +1,17 @@
-"use server";
 import { redirect } from "next/navigation";
 
-async function fetchData(id: string) {
+export default async function ShortRedirect({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/id/${id}`);
 
-  return res.json();
-}
+  const data = await res.json();
 
-export default async function ShortRedirect({ params }) {
-  const res = await fetchData(params.id);
-
-  console.log(res);
-
-  if (res.statusCode == 200) {
-    return redirect(res.data.target, "push");
+  if (data.statusCode == 200) {
+    return redirect(data.data.target);
   }
 
   return redirect("/");
