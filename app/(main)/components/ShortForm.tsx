@@ -5,14 +5,14 @@ import { BsLink45Deg } from "react-icons/bs";
 import { FaCopy, FaMagic } from "react-icons/fa";
 import style from "../style.module.css";
 import { useForm } from "@mantine/form";
-import { CreateShortUrl } from "@/app/_types/short";
+import { CreateShortUrl, ICreateShortUrlSuccess } from "@/app/_types/short";
 import { createShort } from "@/app/_services/short";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 
 export default function ShortForm() {
   const [loading, setLoading] = useState(false);
-  const [short, setShort] = useState();
+  const [short, setShort] = useState<ICreateShortUrlSuccess>();
 
   const form = useForm({
     initialValues: {
@@ -21,7 +21,7 @@ export default function ShortForm() {
   });
 
   const formShort = async (data: CreateShortUrl) => {
-    setLoading(true)
+    setLoading(true);
     const res = await createShort(data);
 
     if (res.statusCode !== 201) {
@@ -31,12 +31,16 @@ export default function ShortForm() {
         withCloseButton: false,
         autoClose: true,
       });
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
-    setLoading(false)
-    setShort(res.data);
+    setLoading(false);
+
+    if ("data" in res) {
+      setLoading(false);
+      setShort(res.data);
+    }
   };
 
   return (
@@ -52,7 +56,7 @@ export default function ShortForm() {
         placeholder="Paste your link here"
         leftSection={<BsLink45Deg size={30} />}
         required
-        readOnly={short || loading}
+        readOnly={!!short || loading}
         {...form.getInputProps("url")}
       />
       {short && (
@@ -78,7 +82,7 @@ export default function ShortForm() {
             size="md"
             leftSection={<FaMagic />}
             onClick={() => {
-              setShort("");
+              setShort(undefined);
               form.reset();
             }}
           >
