@@ -11,6 +11,7 @@ import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 
 export default function ShortForm() {
+  const [loading, setLoading] = useState(false);
   const [short, setShort] = useState();
 
   const form = useForm({
@@ -20,6 +21,7 @@ export default function ShortForm() {
   });
 
   const formShort = async (data: CreateShortUrl) => {
+    setLoading(true)
     const res = await createShort(data);
 
     if (res.statusCode !== 201) {
@@ -29,10 +31,11 @@ export default function ShortForm() {
         withCloseButton: false,
         autoClose: true,
       });
-
+      setLoading(false)
       return;
     }
 
+    setLoading(false)
     setShort(res.data);
   };
 
@@ -49,7 +52,7 @@ export default function ShortForm() {
         placeholder="Paste your link here"
         leftSection={<BsLink45Deg size={30} />}
         required
-        readOnly={short}
+        readOnly={short || loading}
         {...form.getInputProps("url")}
       />
       {short && (
@@ -100,6 +103,7 @@ export default function ShortForm() {
           type="submit"
           color="pink.6"
           size="md"
+          loading={loading}
           leftSection={<FaMagic />}
         >
           Short link
