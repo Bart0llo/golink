@@ -1,0 +1,50 @@
+"use client";
+
+import { Button, Input } from "@mantine/core";
+import { BsLink45Deg } from "react-icons/bs";
+import { FaMagic } from "react-icons/fa";
+import style from "../style.module.css";
+import { useForm } from "@mantine/form";
+import { CreateShortUrl } from "@/app/_types/short";
+import { createShort } from "@/app/_services/short";
+
+export default function ShortForm() {
+  const form = useForm({
+    initialValues: {
+      url: "",
+    },
+  });
+
+  const formShort = async (data: CreateShortUrl) => {
+    const res = await createShort(data);
+
+    console.log(res)
+  };
+
+  return (
+    <form
+      className={style.form}
+      onSubmit={form.onSubmit((values) => formShort(values))}
+    >
+      <Input
+        name="url"
+        classNames={{ input: style.linkInput }}
+        w="100%"
+        size="lg"
+        placeholder="Paste your link here"
+        leftSection={<BsLink45Deg size={30} />}
+        required
+        {...form.getInputProps("url")}
+      />
+      <Button
+        type="submit"
+        className={style.buttonShort}
+        color="pink.6"
+        size="md"
+        leftSection={<FaMagic />}
+      >
+        Short link
+      </Button>
+    </form>
+  );
+}

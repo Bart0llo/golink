@@ -1,17 +1,8 @@
-import {
-  Box,
-  Container,
-  Title,
-  Image,
-  Text,
-  Input,
-  Button,
-} from "@mantine/core";
+import { Box, Container, Title, Image, Text } from "@mantine/core";
 import style from "./style.module.css";
-import { BsLink45Deg } from "react-icons/bs";
-import { FaMagic } from "react-icons/fa";
 import { Metadata } from "next";
 import MotionSlieIn from "./components/MotionSlideIn";
+import ShortForm from "./components/ShortForm";
 
 export const metadata: Metadata = {
   title: "GoLink",
@@ -30,22 +21,7 @@ export default function Home() {
             </Text>{" "}
             in a refreshed version
           </Title>
-          <Input
-            classNames={{ input: style.linkInput }}
-            w="100%"
-            size="lg"
-            required
-            placeholder="Paste your link here"
-            leftSection={<BsLink45Deg size={30} />}
-          />
-          <Button
-            className={style.buttonShort}
-            color="pink.6"
-            size="md"
-            leftSection={<FaMagic />}
-          >
-            Short link
-          </Button>
+          <ShortForm />
         </Box>
       </Container>
     </MotionSlieIn>
