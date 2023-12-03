@@ -7,6 +7,7 @@ import style from "../style.module.css";
 import { useForm } from "@mantine/form";
 import { CreateShortUrl } from "@/app/_types/short";
 import { createShort } from "@/app/_services/short";
+import { notifications } from "@mantine/notifications";
 
 export default function ShortForm() {
   const form = useForm({
@@ -18,7 +19,14 @@ export default function ShortForm() {
   const formShort = async (data: CreateShortUrl) => {
     const res = await createShort(data);
 
-    console.log(res)
+    if (res.statusCode !== 201) {
+      notifications.show({
+        message: res.message[0],
+        color: "red",
+        withCloseButton: false,
+        autoClose: true,
+      });
+    }
   };
 
   return (
