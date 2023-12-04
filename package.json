@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "[ -e .env.local ] && set -a && . ./.env.local; next start",
     "lint": "next lint",
     "release": "release-it"
   },

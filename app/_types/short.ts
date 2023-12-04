@@ -11,10 +11,7 @@ export type ICreateShortUrlSuccess = {
 };
 
 export type IGetShortUrl = {
-  id: string;
   target: string;
   shortID: string;
-  clicks: number;
-  deletionCode: string;
   createdAt: number;
 };
