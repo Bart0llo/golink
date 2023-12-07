@@ -1,4 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const { withPlausibleProxy } = require("next-plausible");
 
-module.exports = nextConfig
+module.exports = withPlausibleProxy({
+  customDomain: "https://a.bart0llo.dev",
+  scriptName: 'plausible.js',
+  subdirectory: 'js'
+})({});
