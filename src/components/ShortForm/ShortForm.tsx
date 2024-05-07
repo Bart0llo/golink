@@ -3,16 +3,14 @@
 import { Button, CopyButton, Group, Input } from "@mantine/core";
 import { BsLink45Deg } from "react-icons/bs";
 import { FaCopy, FaMagic } from "react-icons/fa";
-import style from "../style.module.css";
+import style from "./shortform.module.css";
 import { useForm } from "@mantine/form";
-import { CreateShortUrl, ICreateShortUrlSuccess } from "@/app/_types/short";
-import { createShort } from "@/app/_services/short";
+import { CreateShortUrl, ICreateShortUrlSuccess } from "@/types/short";
+import { createShort } from "@/_services/short";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
-import { usePlausible } from "next-plausible";
 
 export default function ShortForm() {
-  const plausible = usePlausible();
   const [loading, setLoading] = useState(false);
   const [short, setShort] = useState<ICreateShortUrlSuccess>();
 
@@ -113,7 +111,6 @@ export default function ShortForm() {
           size="md"
           loading={loading}
           leftSection={<FaMagic />}
-          onClick={() => plausible("Short url")}
         >
           Short link
         </Button>

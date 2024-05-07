@@ -1,5 +1,5 @@
-import { ErrorMessage, SuccessMessage } from "../_types/http";
-import { CreateShortUrl, ICreateShortUrlSuccess } from "../_types/short";
+import { ErrorMessage, SuccessMessage } from "../types/http";
+import { CreateShortUrl, ICreateShortUrlSuccess } from "../types/short";
 
 const api = process.env.NEXT_PUBLIC_API_URL;
 

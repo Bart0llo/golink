@@ -1,8 +1,7 @@
 import { Box, Container, Title, Image, Text } from "@mantine/core";
 import style from "./style.module.css";
 import { Metadata } from "next";
-import MotionSlieIn from "./components/MotionSlideIn";
-import ShortForm from "./components/ShortForm";
+import ShortForm from "@/components/ShortForm/ShortForm";
 
 export const metadata: Metadata = {
   title: "GoLink",
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <MotionSlieIn>
       <Container className={style.mainBox}>
         <Box className={style.content}>
           <Image p="sm" src="/logo.svg" alt="Logo" maw={270} fit="contain" />
@@ -24,6 +22,5 @@ export default function Home() {
           <ShortForm />
         </Box>
       </Container>
-    </MotionSlieIn>
   );
 }
