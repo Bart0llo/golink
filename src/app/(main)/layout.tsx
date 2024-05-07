@@ -1,7 +1,7 @@
 "use client";
 import { AppShell } from "@mantine/core";
 
-import styles from "./style.module.css";
+import styles from "./page.module.css";
 
 export default function MainLayout({
   children,

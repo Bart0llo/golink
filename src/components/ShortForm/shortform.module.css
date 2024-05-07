@@ -8,8 +8,8 @@
 }
 
 .linkInput:hover {
-  border: 1px solid var(--mantine-color-pink-filled-hover);
+  border: 1px solid var(--mantine-color-pink-6);
 }
 .linkInput:focus {
-  border: 1px solid var(--mantine-color-pink-filled-hover);
+  border: 1px solid var(--mantine-color-pink-6);
 }

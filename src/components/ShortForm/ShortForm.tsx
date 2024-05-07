@@ -1,14 +1,17 @@
 "use client";
 
 import { Button, CopyButton, Group, Input } from "@mantine/core";
-import { BsLink45Deg } from "react-icons/bs";
-import { FaCopy, FaMagic } from "react-icons/fa";
-import style from "./shortform.module.css";
 import { useForm } from "@mantine/form";
-import { CreateShortUrl, ICreateShortUrlSuccess } from "@/types/short";
-import { createShort } from "@/_services/short";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
+
+import { CreateShortUrl, ICreateShortUrlSuccess } from "@/types/short";
+import { createShort } from "@/services/short";
+
+import style from "./shortform.module.css";
+
+import { BsLink45Deg } from "react-icons/bs";
+import { FaCopy, FaMagic } from "react-icons/fa";
 
 export default function ShortForm() {
   const [loading, setLoading] = useState(false);
