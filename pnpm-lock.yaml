@@ -50,6 +50,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
+      tools:
+        specifier: workspace:^
+        version: link:../../packages/tools
     devDependencies:
       '@nestjs/cli':
         specifier: ^10.0.0
@@ -162,6 +165,19 @@ importers:
         version: 14.0.1(eslint@8.57.0)(typescript@5.4.5)
       typescript:
         specifier: ^5.4.5
+        version: 5.4.5
+
+  packages/tools:
+    dependencies:
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
+      nanoid:
+        specifier: 3.3.4
+        version: 3.3.4
+    devDependencies:
+      typescript:
+        specifier: ^5.4.2
         version: 5.4.5
 
 packages:
@@ -5066,6 +5082,10 @@ packages:
     dependencies:
       minimist: 1.2.8
 
+  /moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+    dev: false
+
   /ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
@@ -5096,6 +5116,12 @@ packages:
     resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
+
+  /nanoid@3.3.4:
+    resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
 
   /nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}

@@ -3,7 +3,7 @@ CREATE TABLE "Url" (
     "id" SERIAL NOT NULL,
     "longUrl" TEXT NOT NULL,
     "shortCode" TEXT NOT NULL,
-    "clicks" INTEGER NOT NULL,
+    "clicks" INTEGER NOT NULL DEFAULT 0,
     "createdAt" INTEGER NOT NULL,
 
     CONSTRAINT "Url_pkey" PRIMARY KEY ("id")
