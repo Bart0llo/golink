@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "check:env": "bash ./scripts/check-env.sh"
+    "check:env": "bash ./scripts/check-env.sh",
+    "db:studio": "turbo run db:studio",
+    "db:init": "turbo run db:push db:generate"
   },
   "keywords": [],
   "author": "Bart0llo (https://bart0llo.dev)",
