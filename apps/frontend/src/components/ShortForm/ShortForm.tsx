@@ -5,31 +5,32 @@ import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 
-import { CreateShortUrl, ICreateShortUrlSuccess } from "@/types/short";
-import { createShort } from "@/services/short";
+import { CreateShortUrlDto, ShortUrlResponse } from "@/types/short";
+import { createShort } from "@/services/url";
 
 import style from "./shortform.module.css";
 
 import { BsLink45Deg } from "react-icons/bs";
 import { FaCopy, FaMagic } from "react-icons/fa";
+import { REDIRECT_URL } from "@/utils/constants";
 
 export default function ShortForm() {
   const [loading, setLoading] = useState(false);
-  const [short, setShort] = useState<ICreateShortUrlSuccess>();
+  const [short, setShort] = useState<ShortUrlResponse>();
 
   const form = useForm({
     initialValues: {
-      url: "",
+      target: "",
     },
   });
 
-  const formShort = async (data: CreateShortUrl) => {
+  const formShort = async (data: CreateShortUrlDto) => {
     setLoading(true);
     const res = await createShort(data);
 
-    if (res.statusCode !== 201) {
+    if ("error" in res) {
       notifications.show({
-        message: res.message[0],
+        message: "Url could not be created",
         color: "red",
         withCloseButton: false,
         autoClose: true,
@@ -39,11 +40,7 @@ export default function ShortForm() {
     }
 
     setLoading(false);
-
-    if ("data" in res) {
-      setLoading(false);
-      setShort(res.data);
-    }
+    setShort(res);
   };
 
   return (
@@ -52,7 +49,7 @@ export default function ShortForm() {
       onSubmit={form.onSubmit((values) => formShort(values))}
     >
       <Input
-        name="url"
+        name="target"
         classNames={{ input: style.linkInput }}
         w="100%"
         size="lg"
@@ -60,7 +57,7 @@ export default function ShortForm() {
         leftSection={<BsLink45Deg size={30} />}
         required
         readOnly={!!short || loading}
-        {...form.getInputProps("url")}
+        {...form.getInputProps("target")}
       />
       {short && (
         <Input.Wrapper w="100%">
@@ -74,7 +71,7 @@ export default function ShortForm() {
             w="100%"
             size="lg"
             readOnly
-            value={`${process.env.NEXT_PUBLIC_REDIRECT_URL}/${short.shortID}`}
+            value={`${REDIRECT_URL}/${short.shortCode}`}
           />
         </Input.Wrapper>
       )}
@@ -92,9 +89,7 @@ export default function ShortForm() {
             Next short
           </Button>
 
-          <CopyButton
-            value={`${process.env.NEXT_PUBLIC_REDIRECT_URL}/${short.shortID}`}
-          >
+          <CopyButton value={`${REDIRECT_URL}/${short.shortCode}`}>
             {({ copied, copy }) => (
               <Button
                 color={copied ? "teal" : "pink.6"}

@@ -1,12 +1,11 @@
-export type CreateShortUrl = {
-  url: string;
+export type CreateShortUrlDto = {
+  target: string;
 };
 
-export type ICreateShortUrlSuccess = {
-  id: string;
+export type ShortUrlResponse = {
+  id: number;
   target: string;
-  shortID: string;
-  deletionCode: string;
+  shortCode: string;
   createdAt: number;
 };
 
