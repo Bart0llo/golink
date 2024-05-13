@@ -1,9 +1,16 @@
 module.exports = {
   apps: [
     {
-      name: '[Golink]',
+      name: '[Golink Frontend]',
+      cwd: './apps/frontend',
       script: 'npm run start',
-      watch: true,
+      instances: 1,
+    },
+    {
+      name: '[Golink Backend]',
+      cwd: './apps/backend',
+      script: 'npm run start',
+      instances: 1,
     },
   ],
 };
