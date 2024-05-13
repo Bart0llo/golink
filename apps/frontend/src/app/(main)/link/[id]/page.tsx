@@ -14,5 +14,5 @@ export default async function ShortRedirect({
     return redirect(data.data.target);
   }
 
-  return redirect("/");
+  return redirect("/?error=404");
 }
