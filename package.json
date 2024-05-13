@@ -1,6 +1,6 @@
 {
   "name": "golink",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "check:env": "bash ./scripts/check-env.sh"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bart0llo (https://bart0llo.dev)",
   "license": "ISC",
   "devDependencies": {
     "dotenv-cli": "^7.4.2",
