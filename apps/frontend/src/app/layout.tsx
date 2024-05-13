@@ -3,6 +3,7 @@ import "@mantine/notifications/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -20,6 +21,12 @@ export default function RootLayout({
           <Notifications position="top-right" />
           {children}
         </MantineProvider>
+
+        <Script
+          async
+          src="https://umami.bart0llo.dev/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
+        />
       </body>
     </html>
   );

@@ -41,6 +41,7 @@ export default function ShortForm() {
 
     setLoading(false);
     setShort(res);
+    window.umami.track("Short url created", { shortCode: res.shortCode });
   };
 
   return (
@@ -85,6 +86,7 @@ export default function ShortForm() {
               setShort(undefined);
               form.reset();
             }}
+            data-umami-event="Next short button"
           >
             Next short
           </Button>
@@ -96,6 +98,8 @@ export default function ShortForm() {
                 size="md"
                 onClick={copy}
                 leftSection={<FaCopy />}
+                data-umami-event="Copy url button"
+                data-umami-event-shortCode={short.shortCode}
               >
                 {copied ? "Copied url" : "Copy url"}
               </Button>
