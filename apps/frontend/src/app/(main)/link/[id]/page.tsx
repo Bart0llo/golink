@@ -1,29 +1,21 @@
-import { API_URL, REDIRECT_SHORT_URL } from "@/utils/constants";
-import { redirect } from "next/navigation";
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import getLinkRedirect from "@/actions/getLinkRedirect";
 
-export default async function ShortRedirect({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function ShortRedirect({ params }: { params: { id: string } }) {
   const { id } = params;
-  const res = await fetch(`${API_URL}/${REDIRECT_SHORT_URL}/${id}`);
+  const router = useRouter();
 
-  const data = await res.json();
+  useEffect(() => {
+    getLinkRedirect(id).then((data) => {
+      if (data) {
+        window.location.href = data;
+        return;
+      }
+      router.replace("/?error=404");
+    });
+  }, [id, router]);
 
-  if (res.status == 200) {
-    if (
-      !data.url.startsWith("http://") &&
-      !data.url.startsWith("https://")
-    ) {
-      return redirect("https://" + data.url);
-    } else if (
-      data.url.startsWith("http://") ||
-      data.url.startsWith("https://")
-    ) {
-      return redirect(data.url);
-    }
-  }
-
-  return redirect("/?error=404");
+  return null;
 }
