@@ -3,7 +3,7 @@ FRONTEND_DIR = frontend
 BACKEND_DIR = backend
 DOCKER_IMAGE_NAME_FRONTEND = golink-web
 DOCKER_IMAGE_NAME_BACKEND = golink-server
-VERSION = $(npm pkg get version --workspaces=false | tr -d \")
+VERSION := $(shell jq -r .version ./package.json)
 
 # Commands
 NPM = pnpm
