@@ -1,6 +1,9 @@
 # Variables
 FRONTEND_DIR = frontend
 BACKEND_DIR = backend
+DOCKER_IMAGE_NAME_FRONTEND = golink-web
+DOCKER_IMAGE_NAME_BACKEND = golink-server
+VERSION = $(npm pkg get version --workspaces=false | tr -d \")
 
 # Commands
 NPM = pnpm
@@ -8,7 +11,7 @@ CONCURRENTLY = concurrently
 PRISMA = npx prisma
 
 # Targets
-.PHONY: help dev dev-frontend dev-backend dev-concurrent prisma-generate prisma-migrate prisma-seed clean
+.PHONY: help dev prisma-generate prisma-migrate clean build-frontend
 
 # Default target
 help:
@@ -24,6 +27,7 @@ help:
 	@echo "  prisma-generate   - Generate Prisma client"
 	@echo "  prisma-migrate    - Run Prisma migrations"
 	@echo "  clean             - Clean node_modules in both frontend and backend"
+	@echo "  build-frontend    - Build Docker image for frontend"
 
 # Run development environment
 dev:
@@ -61,3 +65,7 @@ prisma-migrate:
 clean:
 	cd $(FRONTEND_DIR) && rm -rf node_modules
 	cd $(BACKEND_DIR) && rm -rf node_modules
+
+# Build Docker image for frontend
+build-frontend:
+	cd $(FRONTEND_DIR) && sudo docker build -t $(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) .
