@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { toEpochTime, generateID } from 'tools';
+import { toEpochTime, generateID } from '../../lib/functions';
 
 @Injectable()
 export class UrlService {

@@ -5,19 +5,12 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "check:env": "bash ./scripts/check-env.sh",
-    "db:studio": "turbo run db:studio",
-    "db:init": "turbo run db:push db:generate",
     "release": "release-it"
   },
   "keywords": [],
   "author": "Bart0llo (https://bart0llo.dev)",
   "license": "ISC",
   "devDependencies": {
-    "dotenv-cli": "^7.4.2",
-    "release-it": "^17.2.1",
-    "turbo": "^1.13.3"
+    "release-it": "^17.2.1"
   }
 }
