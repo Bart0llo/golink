@@ -1,52 +1,63 @@
-## ------------
-## Setup
-## ------------
+# Variables
+FRONTEND_DIR = frontend
+BACKEND_DIR = backend
 
-.DEFAULT_GOAL := help
-.PHONY: help
+# Commands
+NPM = pnpm
+CONCURRENTLY = concurrently
+PRISMA = npx prisma
+
+# Targets
+.PHONY: help dev dev-frontend dev-backend dev-concurrent prisma-generate prisma-migrate prisma-seed clean
+
+# Default target
 help:
-	@echo "\033[1;34musage: make [target]\033[0m"
-	@echo
-	@echo "\033[1;36mtargets:\033[0m"
-	@awk '/^[a-zA-Z_-]+:/ {split($$0, targets, ":"); print "\033[1;32m" targets[1] "\033[0m"}' Makefile
-	
 
-## ------------
-## Install
-## ------------
+# Show help
+help:
+	@echo "Usage: make [target] [RUN=frontend|backend]"
+	@echo "Targets:"
+	@echo "  help              - Show this help message"
+	@echo "  dev               - Run frontend and backend development environments"
+	@echo "                     - Use RUN=frontend to run only frontend"
+	@echo "                     - Use RUN=backend to run only backend"
+	@echo "  prisma-generate   - Generate Prisma client"
+	@echo "  prisma-migrate    - Run Prisma migrations"
+	@echo "  clean             - Clean node_modules in both frontend and backend"
 
-.PHONY: install
-install:
-	pnpm install
+# Run development environment
+dev:
+ifeq ($(RUN),frontend)
+	$(MAKE) dev-frontend
+else ifeq ($(RUN),backend)
+	$(MAKE) dev-backend
+else
+	$(MAKE) dev-concurrent
+endif
 
-## ------------
-## Check env
-## ------------
+# Run frontend development environment
+dev-frontend:
+	cd $(FRONTEND_DIR) && $(NPM) install && $(NPM) run dev
 
-.PHONY: check-env
-check-env:
-	npm run check:env
+# Run backend development environment
+dev-backend:
+	cd $(BACKEND_DIR) && $(NPM) install && $(NPM) run dev
 
-## ------------
-## Build
-## ------------
+# Run frontend and backend concurrently (requires 'concurrently' package)
+dev-concurrent:
+	cd $(FRONTEND_DIR) && $(NPM) install && cd ..
+	cd $(BACKEND_DIR) && $(NPM) install && cd ..
+	$(CONCURRENTLY) "cd $(FRONTEND_DIR) && $(NPM) run dev" "cd $(BACKEND_DIR) && $(NPM) run dev"
 
-.PHONY: build
-build:
-	npm run build
+# Generate Prisma client
+prisma-generate:
+	cd $(BACKEND_DIR) && $(PRISMA) generate
 
-## ------------
-## Start 
-## ------------
+# Run Prisma migrations
+prisma-migrate:
+	cd $(BACKEND_DIR) && $(PRISMA) migrate deploy
 
-.PHONY: start
-start:
-	pm2 start ecosystem.config.js
-
-## ------------
-## Stop
-## ------------
-
-.PHONY: stop
-stop:
-	pm2 delete all
+# Clean node_modules in both frontend and backend
+clean:
+	cd $(FRONTEND_DIR) && rm -rf node_modules
+	cd $(BACKEND_DIR) && rm -rf node_modules
