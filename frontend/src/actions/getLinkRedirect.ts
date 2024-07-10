@@ -12,14 +12,7 @@ export default async function getLinkRedirect(
   const data = await res.json();
 
   if (res.status == 200) {
-    if (!data.url.startsWith("http://") && !data.url.startsWith("https://")) {
-      return "https://" + data.url;
-    } else if (
-      data.url.startsWith("http://") ||
-      data.url.startsWith("https://")
-    ) {
-      return data.url;
-    }
+    return data.url;
   }
 
   return null;
