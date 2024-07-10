@@ -6,7 +6,7 @@ settings:
 
 devDependencies:
   release-it:
-    specifier: ^17.2.1
+    specifier: ^17.5.0
     version: 17.5.0
 
 packages:

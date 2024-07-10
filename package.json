@@ -11,6 +11,6 @@
   "author": "Bart0llo (https://bart0llo.dev)",
   "license": "ISC",
   "devDependencies": {
-    "release-it": "^17.2.1"
+    "release-it": "^17.5.0"
   }
 }
