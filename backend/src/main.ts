@@ -8,7 +8,10 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.setGlobalPrefix('api');
+  const globalPrefix = process.env.API_PREFIX;
+  if (globalPrefix) {
+    app.setGlobalPrefix(globalPrefix);
+  }
 
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, stopAtFirstError: true }),
