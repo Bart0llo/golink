@@ -1,9 +1,11 @@
+import { env } from "next-runtime-env";
 import { CreateShortUrlDto } from "../types/short";
-import { API_URL, SHORT_URL } from "@/utils/constants";
+import { SHORT_URL } from "@/utils/constants";
 
 const createShort = async (data: CreateShortUrlDto) => {
+  const apiURL = env("NEXT_PUBLIC_API_URL");
   return await (
-    await fetch(`${API_URL}/${SHORT_URL}`, {
+    await fetch(`${apiURL}/${SHORT_URL}`, {
       method: "POST",
       headers: {
         Accept: "application/json",

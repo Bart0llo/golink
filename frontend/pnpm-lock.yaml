@@ -20,6 +20,9 @@ dependencies:
   next:
     specifier: ^14.2.3
     version: 14.2.4(react-dom@18.3.1)(react@18.3.1)
+  next-runtime-env:
+    specifier: ^3.2.2
+    version: 3.2.2(next@14.2.4)(react@18.3.1)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -1893,6 +1896,16 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-runtime-env@3.2.2(next@14.2.4)(react@18.3.1):
+    resolution: {integrity: sha512-S5S6NxIf3XeaVc9fLBN2L5Jzu+6dLYCXeOaPQa1RzKRYlG2BBayxXOj6A4VsciocyNkJMazW1VAibtbb1/ZjAw==}
+    peerDependencies:
+      next: ^14
+      react: ^18
+    dependencies:
+      next: 14.2.4(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+    dev: false
 
   /next@14.2.4(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-R8/V7vugY+822rsQGQCjoLhMuC9oFj9SOi4Cl4b2wjDrseD0LRZ10W7R6Czo4w9ZznVSshKjuIomsRjvm9EKJQ==}

@@ -4,17 +4,20 @@ import "@mantine/notifications/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import Script from "next/script";
+import { PublicEnvScript, env } from "next-runtime-env";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const analyticsID = env("NEXT_PUBLIC_ANALYTICS_ID");
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <ColorSchemeScript forceColorScheme="dark" />
+        <PublicEnvScript />
       </head>
       <body>
         <MantineProvider defaultColorScheme="dark">
@@ -25,7 +28,7 @@ export default function RootLayout({
         <Script
           async
           src="https://umami.bart0llo.dev/script.js"
-          data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
+          data-website-id={analyticsID}
         />
       </body>
     </html>
