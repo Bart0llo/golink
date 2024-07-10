@@ -18,6 +18,7 @@ model Url {
   id        Int    @id @default(autoincrement())
   longUrl   String
   shortCode String @unique
+  protocol  String @default("https://")
   clicks    Int    @default(0)
   createdAt Int
 }

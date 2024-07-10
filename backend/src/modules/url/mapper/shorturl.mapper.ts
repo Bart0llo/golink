@@ -14,7 +14,7 @@ export class ShortUrlMapper implements IShortUrlMapper {
   public static map(data: Url) {
     return new ShortUrlMapper({
       id: data.id,
-      target: data.longUrl,
+      target: data.protocol + data.longUrl,
       shortCode: data.shortCode,
       createdAt: data.createdAt,
     });
