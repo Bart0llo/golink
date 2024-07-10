@@ -11,7 +11,7 @@ CONCURRENTLY = concurrently
 PRISMA = npx prisma
 
 # Targets
-.PHONY: help dev prisma-generate prisma-migrate clean build-frontend
+.PHONY: help dev prisma-generate prisma-migrate clean build-frontend build-backend
 
 # Default target
 help:
@@ -28,6 +28,7 @@ help:
 	@echo "  prisma-migrate    - Run Prisma migrations"
 	@echo "  clean             - Clean node_modules in both frontend and backend"
 	@echo "  build-frontend    - Build Docker image for frontend"
+	@echo "  build-backend     - Build Docker image for backend"
 
 # Run development environment
 dev:
@@ -69,3 +70,7 @@ clean:
 # Build Docker image for frontend
 build-frontend:
 	cd $(FRONTEND_DIR) && sudo docker build -t $(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) .
+
+# Build Docker image for backend
+build-backend:
+	cd $(BACKEND_DIR) && sudo docker build -t $(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) .

@@ -1,0 +1,46 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Build files
+dist
+build
+out
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Prisma generated files
+prisma/generated
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Miscellaneous
+.idea
+.vscode
+*.swp
+*~
+.project
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+.gitignore
+.prettierrc
+
+# Tests
+coverage
+*.lcov
+jest-results
