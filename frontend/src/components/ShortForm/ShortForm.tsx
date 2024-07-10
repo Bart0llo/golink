@@ -12,9 +12,11 @@ import style from "./shortform.module.css";
 
 import { BsLink45Deg } from "react-icons/bs";
 import { FaCopy, FaMagic } from "react-icons/fa";
-import { REDIRECT_URL } from "@/utils/constants";
+import { env } from "next-runtime-env";
 
 export default function ShortForm() {
+  const redirectDomain = env("NEXT_PUBLIC_REDIRECT_URL");
+
   const [loading, setLoading] = useState(false);
   const [short, setShort] = useState<ShortUrlResponse>();
 
@@ -72,7 +74,7 @@ export default function ShortForm() {
             w="100%"
             size="lg"
             readOnly
-            value={`${REDIRECT_URL}/${short.shortCode}`}
+            value={`${redirectDomain}/${short.shortCode}`}
           />
         </Input.Wrapper>
       )}
@@ -91,7 +93,7 @@ export default function ShortForm() {
             Next short
           </Button>
 
-          <CopyButton value={`${REDIRECT_URL}/${short.shortCode}`}>
+          <CopyButton value={`${redirectDomain}/${short.shortCode}`}>
             {({ copied, copy }) => (
               <Button
                 color={copied ? "teal" : "pink.6"}
