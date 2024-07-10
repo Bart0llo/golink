@@ -27,4 +27,7 @@ COPY --from=builder /app/prisma ./prisma
 
 ENV PORT=4000
 EXPOSE 4000
+
+LABEL org.opencontainers.image.source=https://github.com/Bart0llo/golink
+
 CMD [  "npm", "run", "start:migrate:prod" ]
