@@ -1,21 +1,18 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+"use server";
 import getLinkRedirect from "@/actions/getLinkRedirect";
+import LinkRedirectPage from "@/container/link-redirect-page";
+import { redirect } from "next/navigation";
 
-export default function ShortRedirect({ params }: { params: { id: string } }) {
+export default async function ShortRedirect({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
-  const router = useRouter();
 
-  useEffect(() => {
-    getLinkRedirect(id).then((data) => {
-      if (data) {
-        window.location.href = data;
-        return;
-      }
-      router.replace("/?error=404");
-    });
-  }, [id, router]);
+  const redirectURL = await getLinkRedirect(id);
 
-  return null;
+  if (!redirectURL) return redirect("/?error=404");
+
+  return <LinkRedirectPage redirect={redirectURL} />;
 }
