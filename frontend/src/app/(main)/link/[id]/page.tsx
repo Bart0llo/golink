@@ -1,7 +1,11 @@
-"use server";
 import getLinkRedirect from "@/actions/getLinkRedirect";
 import LinkRedirectPage from "@/container/link-redirect-page";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Link Redirect",
+}
 
 export default async function ShortRedirect({
   params,

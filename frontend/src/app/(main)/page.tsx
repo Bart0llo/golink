@@ -3,10 +3,6 @@ import style from "./page.module.css";
 import { Box, Container, Title, Image, Text } from "@mantine/core";
 import ShortForm from "@/components/ShortForm/ShortForm";
 
-export const metadata: Metadata = {
-  title: "GoLink",
-};
-
 export default function HomePage() {
   return (
     <Container className={style.mainBox}>

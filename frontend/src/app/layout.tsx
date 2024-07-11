@@ -5,6 +5,16 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import Script from "next/script";
 import { PublicEnvScript, env } from "next-runtime-env";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "GoLink",
+    template: "%s | GoLink",
+  },
+  description: "GoLink - the classic link shortener",
+  authors: [{ name: "Bart0llo", url: "https://bart0llo.dev" }],
+};
 
 export default function RootLayout({
   children,
