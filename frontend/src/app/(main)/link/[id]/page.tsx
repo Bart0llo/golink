@@ -31,7 +31,11 @@ export async function generateMetadata({
         },
         description: "",
         openGraph: {
-          videos: redirectURL.metaTags.image,
+          videos: {
+            url: redirectURL.metaTags.image,
+            secureUrl: redirectURL.metaTags.image,
+          },
+          type: "video.other",
         },
       };
 
