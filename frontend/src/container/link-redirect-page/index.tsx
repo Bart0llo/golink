@@ -3,11 +3,9 @@ import { Container, Title, Text } from "@mantine/core";
 import style from "./style.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { IRedirectResponse } from "@/types/redirect";
 
-type Props = {
-  redirect: string;
-};
-export default function LinkRedirectPage({ redirect }: Props) {
+export default function LinkRedirectPage({ redirectUrl }: IRedirectResponse) {
   const [counter, setCounter] = useState(5);
 
   useEffect(() => {
@@ -17,19 +15,19 @@ export default function LinkRedirectPage({ redirect }: Props) {
 
     setTimeout(() => {
       clearInterval(interval);
-      window.location.replace(redirect);
+      window.location.replace(redirectUrl);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [redirect]);
+  }, [redirectUrl]);
 
   return (
     <Container className={style.container}>
-      <Title size={40}>
+      <Title ta="center" size={40}>
         Redirecting you to website in {counter} seconds...
       </Title>
       <Text size="lg">
-        Redirect doeasn&apos;t work? <Link href={redirect}>Click here</Link>
+        Redirect doeasn&apos;t work? <Link href={redirectUrl}>Click here</Link>
       </Text>
     </Container>
   );
