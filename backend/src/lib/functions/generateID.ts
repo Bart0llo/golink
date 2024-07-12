@@ -1,4 +1,4 @@
-import { customAlphabet } from "nanoid";
+import { customAlphabet } from 'nanoid';
 
 /**
  * generateID
@@ -33,13 +33,13 @@ export function generateID(length: number, options?: Options): string {
   }
   let letters: string;
   if (options.onlyNumbers) {
-    letters = "0123456789";
+    letters = '0123456789';
   } else if (options.onlyLetters) {
-    letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   } else if (options.customAlb) {
     letters = options.customAlb;
   } else {
-    letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    letters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   }
 
   const alphabet = customAlphabet(letters);

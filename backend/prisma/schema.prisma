@@ -13,12 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Define your data model
 model Url {
-  id        Int    @id @default(autoincrement())
-  longUrl   String
-  shortCode String @unique
-  protocol  String @default("https://")
-  clicks    Int    @default(0)
-  createdAt Int
+  id          Int       @id @default(autoincrement())
+  longUrl     String
+  shortCode   String    @unique
+  protocol    String    @default("https://")
+  clicks      Int       @default(0)
+  useMetadata Boolean   @default(false)
+  metadata    Metadata?
+  createdAt   Int
+}
+
+model Metadata {
+  id          Int          @id @default(autoincrement())
+  url         Url          @relation(fields: [urlId], references: [id])
+  urlId       Int          @unique
+  type        MetadataType
+  title       String?
+  description String?
+  color       String?
+  withUrl     String?
+  contentUrl  String?
+}
+
+enum MetadataType {
+  website
+  image
+  video
 }

@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import * as moment from 'moment';
 
 /**
  * toEpochTime
@@ -33,17 +33,17 @@ import * as moment from "moment";
  */
 export function toEpochTime(
   amount?: number,
-  unit?: moment.unitOfTime.DurationConstructor
+  unit?: moment.unitOfTime.DurationConstructor,
 ): number {
   // Check for null pointer references.
   if (!moment) {
-    throw new Error("moment is not defined.");
+    throw new Error('moment is not defined.');
   }
 
   // Check for unhandled exceptions.
   try {
     if (amount && amount <= 0) {
-      throw new Error("Amount must be a positive number.");
+      throw new Error('Amount must be a positive number.');
     }
     if (amount && unit) {
       const time = moment().add(amount, unit).toDate();
@@ -52,7 +52,7 @@ export function toEpochTime(
     return Math.round(new Date().getTime() / 1000);
   } catch (exception) {
     if (exception instanceof TypeError) {
-      throw new TypeError("moment.add threw a TypeError.");
+      throw new TypeError('moment.add threw a TypeError.');
     }
     throw exception;
   }
