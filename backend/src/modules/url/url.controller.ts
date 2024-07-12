@@ -10,7 +10,7 @@ export class UrlController {
 
   @Post('short')
   async short(@Body() body: CreateShortUrlDto) {
-    return ShortUrlMapper.map(await this.urlService.short(body.target));
+    return ShortUrlMapper.map(await this.urlService.short(body));
   }
 
   @Get('redirect/:id')

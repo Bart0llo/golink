@@ -10,6 +10,7 @@ import * as urlMetadata from 'url-metadata';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 import { Metadata, MetadataType, Url } from '@prisma/client';
+import { CreateShortUrlDto } from './dto/shorturl.dto';
 
 @Injectable()
 export class UrlService {
@@ -18,9 +19,13 @@ export class UrlService {
     private readonly httpService: HttpService,
   ) {}
 
-  async short(urlBody: string) {
-    const { protocol, url } = detectProtocol(urlBody);
-    const urlSave = await this.createShortUrlEntry(protocol, url);
+  async short(body: CreateShortUrlDto) {
+    const { protocol, url } = detectProtocol(body.target);
+    const urlSave = await this.createShortUrlEntry(
+      protocol,
+      url,
+      body.withMetatags,
+    );
 
     if (protocol === 'https://' || protocol === 'http://') {
       await this.saveUrlMetadata(urlSave.id, protocol + url);
@@ -48,7 +53,11 @@ export class UrlService {
     return url;
   }
 
-  private async createShortUrlEntry(protocol: string, url: string) {
+  private async createShortUrlEntry(
+    protocol: string,
+    url: string,
+    withMetadata: boolean,
+  ) {
     return this.prisma.url.create({
       data: {
         shortCode: generateID(7, {
@@ -57,6 +66,7 @@ export class UrlService {
         }),
         protocol,
         longUrl: url,
+        useMetadata: withMetadata,
         createdAt: toEpochTime(),
       },
     });
