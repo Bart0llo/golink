@@ -1,5 +1,6 @@
 export type CreateShortUrlDto = {
   target: string;
+  withMetatags: boolean;
 };
 
 export type ShortUrlResponse = {

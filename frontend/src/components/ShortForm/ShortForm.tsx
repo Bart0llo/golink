@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, CopyButton, Group, Input } from "@mantine/core";
+import { Button, Checkbox, CopyButton, Group, Input } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import { useState } from "react";
@@ -23,6 +23,7 @@ export default function ShortForm() {
   const form = useForm({
     initialValues: {
       target: "",
+      withMetatags: false,
     },
   });
 
@@ -62,6 +63,14 @@ export default function ShortForm() {
         readOnly={!!short || loading}
         {...form.getInputProps("target")}
       />
+      {form.values.target && !short && (
+        <Checkbox
+          size="md"
+          color="pink.6"
+          label="Display original url meta tags"
+          {...form.getInputProps("withMetatags", { type: "checkbox" })}
+        />
+      )}
       {short && (
         <Input.Wrapper w="100%">
           <Input
