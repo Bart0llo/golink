@@ -9,7 +9,7 @@ import {
 import * as urlMetadata from 'url-metadata';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { MetadataType } from '@prisma/client';
+import { Metadata, MetadataType, Url } from '@prisma/client';
 
 @Injectable()
 export class UrlService {
@@ -29,10 +29,13 @@ export class UrlService {
     return urlSave;
   }
 
-  async redirect(id: string) {
+  async redirect(id: string): Promise<Url & { metadata: Metadata }> {
     const url = await this.prisma.url.findUnique({
       where: {
         shortCode: id,
+      },
+      include: {
+        metadata: true,
       },
     });
 
@@ -42,7 +45,7 @@ export class UrlService {
 
     await this.incrementClickCount(id);
 
-    return url.protocol + url.longUrl;
+    return url;
   }
 
   private async createShortUrlEntry(protocol: string, url: string) {
