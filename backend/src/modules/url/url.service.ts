@@ -1,10 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { toEpochTime, generateID, detectProtocol } from '../../lib/functions';
+import {
+  toEpochTime,
+  generateID,
+  detectProtocol,
+  parseContentType,
+} from '../../lib/functions';
 import * as urlMetadata from 'url-metadata';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { parseContentType } from '../../lib/functions/parseContentType';
 import { MetadataType } from '@prisma/client';
 
 @Injectable()
