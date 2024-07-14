@@ -1,0 +1,8 @@
+.backgroundImg {
+  background-image: url("/bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+}
