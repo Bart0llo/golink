@@ -1,5 +1,5 @@
 .mainBox {
-  min-height: calc(100dvh - 120px);
+  min-height: calc(100dvh - 110px);
   display: flex;
   align-items: center;
   justify-content: center;

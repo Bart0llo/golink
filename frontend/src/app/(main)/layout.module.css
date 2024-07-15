@@ -10,8 +10,7 @@
 .backgroundRedirect {
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   position: absolute;
   width: 100%;
-  height: 100vh
+  height: 100vh;
 }
