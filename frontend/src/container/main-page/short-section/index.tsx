@@ -3,7 +3,7 @@ import { Box, Container, Title, Image, Text } from "@mantine/core";
 import ShortForm from "./components/ShortForm";
 import GolinkBig from "@/components/logo/GolinkBig";
 
-export default function MainPageSection() {
+export default function MainShortSection() {
   return (
     <Container className={style.mainBox}>
       <Box className={style.content}>

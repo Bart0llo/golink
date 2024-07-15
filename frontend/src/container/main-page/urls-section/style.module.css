@@ -1,0 +1,4 @@
+.urlBox {
+  min-height: 100dvh;
+  background: var(--mantine-color-pink-6);
+}
