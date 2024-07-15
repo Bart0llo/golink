@@ -8,7 +8,7 @@ export default function MainPageSection() {
     <Container className={style.mainBox}>
       <Box className={style.content}>
         <GolinkBig size={270} />
-        <Title order={3} ta="center" px="xl" bg="dark.7">
+        <Title order={3} ta="center" px="xl">
           Return of the iconic link shortener{" "}
           <Text span inherit c="pink.6" fw="bolder">
             GoLink

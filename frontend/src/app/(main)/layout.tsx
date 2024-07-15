@@ -12,12 +12,15 @@ export default function MainLayout({
 }) {
   const pathname = usePathname();
   const pathIsRedirect = pathname?.startsWith("/link");
+  const pathIsMain = pathname === "/";
+
+  const backgroundStyle = pathIsRedirect ? styles.backgroundRedirect : pathIsMain ? styles.backgroundMain : "";
 
   return (
     <AppShell
       disabled={pathIsRedirect}
       header={{ height: 80 }}
-      className={styles.backgroundImg}
+      className={backgroundStyle}
     >
       <AppShell.Header
         withBorder={false}

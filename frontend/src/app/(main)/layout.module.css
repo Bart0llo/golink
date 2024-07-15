@@ -1,8 +1,17 @@
-.backgroundImg {
-  background-image: url("/bg.svg");
+.backgroundMain {
+  background-image: url("/bgWave.svg");
+}
+
+.backgroundRedirect {
+  background-image: url("/bgRedirect.svg");
+}
+
+.backgroundMain,
+.backgroundRedirect {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: absolute;
   width: 100%;
+  height: 100vh
 }

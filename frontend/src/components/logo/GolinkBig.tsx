@@ -3,7 +3,7 @@ type Props = {
 };
 export default function GolinkBig({ size }: Props) {
   return (
-    <div style={{ backgroundColor: "#242424", width: size, height: "100%" }}>
+    <div style={{ width: size, height: "100%" }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}
