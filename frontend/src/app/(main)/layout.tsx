@@ -14,7 +14,11 @@ export default function MainLayout({
   const pathIsRedirect = pathname?.startsWith("/link");
   const pathIsMain = pathname === "/";
 
-  const backgroundStyle = pathIsRedirect ? styles.backgroundRedirect : pathIsMain ? styles.backgroundMain : "";
+  const backgroundStyle = pathIsRedirect
+    ? styles.backgroundRedirect
+    : pathIsMain
+    ? styles.backgroundMain
+    : "";
 
   return (
     <AppShell
@@ -24,7 +28,7 @@ export default function MainLayout({
     >
       <AppShell.Header
         withBorder={false}
-        style={{ backgroundColor: "transparent" }}
+        style={{ backgroundColor: "transparent", position: "absolute" }}
       >
         <Header />
       </AppShell.Header>
