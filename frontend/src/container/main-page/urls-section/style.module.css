@@ -13,6 +13,5 @@
 }
 
 .content a {
-  text-decoration: none;
   color: var(--mantine-color-white);
 }
