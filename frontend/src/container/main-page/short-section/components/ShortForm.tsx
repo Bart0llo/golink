@@ -14,6 +14,7 @@ import TargetInput from "./TargetInput";
 import MetaTagsCheckbox from "./MetaTagsCheckbox";
 import ShortenedUrl from "./ShortenedUrl";
 import Actions from "./Actions";
+import { addLink } from "@/utils/userLinks";
 
 export default function ShortForm() {
   const redirectDomain = env("NEXT_PUBLIC_REDIRECT_URL");
@@ -45,6 +46,7 @@ export default function ShortForm() {
 
     setLoading(false);
     setShort(res);
+    addLink(res);
     window.umami.track("Short url created", { shortCode: res.shortCode });
   };
 

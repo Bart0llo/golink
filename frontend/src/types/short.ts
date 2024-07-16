@@ -10,6 +10,10 @@ export type ShortUrlResponse = {
   createdAt: number;
 };
 
+export interface ShortUrl extends ShortUrlResponse {
+  clicks: number;
+}
+
 export type IGetShortUrl = {
   target: string;
   shortID: string;
