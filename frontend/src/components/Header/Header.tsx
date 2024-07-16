@@ -26,7 +26,7 @@ export default function Header() {
     </UnstyledButton>
   ));
 
-  // Create navbar for mobile
+  // TODO: Create navbar for mobile
 
   return (
     <Container size="md" className={style.container}>

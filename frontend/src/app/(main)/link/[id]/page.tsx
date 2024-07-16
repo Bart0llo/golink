@@ -58,7 +58,7 @@ export async function generateMetadata({
   }
 }
 
-// For the theme color
+// TODO: For the theme color
 // https://nextjs.org/docs/app/api-reference/functions/generate-viewport
 
 export default async function ShortRedirect({
