@@ -22,7 +22,7 @@ export default function LinkRedirectPage({ redirectUrl }: IRedirectResponse) {
   }, [redirectUrl]);
 
   return (
-    <Container className={style.container}>
+    <Container p={0} fluid className={style.container}>
       <Title ta="center" size={40}>
         Redirecting you to website in {counter} seconds...
       </Title>
