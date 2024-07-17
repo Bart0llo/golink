@@ -3,7 +3,7 @@ import { Container, Title, Text } from "@mantine/core";
 import style from "./style.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { IRedirectResponse } from "@/types/redirect";
+import { IRedirectResponse } from "@/lib/types/redirect";
 
 export default function LinkRedirectPage({ redirectUrl }: IRedirectResponse) {
   const [counter, setCounter] = useState(5);

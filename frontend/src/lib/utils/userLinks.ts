@@ -1,4 +1,4 @@
-import { ShortUrl } from "@/types/short";
+import { ShortUrl } from "@/lib/types/short";
 
 export function userLinks() {
   try {

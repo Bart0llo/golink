@@ -1,7 +1,7 @@
 "use server";
 
-import { IRedirectResponse } from "@/types/redirect";
-import { REDIRECT_SHORT_URL } from "@/utils/constants";
+import { IRedirectResponse } from "@/lib/types/redirect";
+import { REDIRECT_SHORT_URL } from "@/lib/utils/constants";
 import { env } from "next-runtime-env";
 
 export default async function getLinkRedirect(

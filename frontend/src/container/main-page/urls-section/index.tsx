@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "@mantine/core";
 import style from "./style.module.css";
-import { userLinks } from "@/utils/userLinks";
+import { userLinks } from "@/lib/utils/userLinks";
 import Link from "next/link";
-import { truncateText } from "@/utils/truncateText";
+import { truncateText } from "@/lib/utils/truncateText";
 import { env } from "next-runtime-env";
-import { ShortUrl } from "@/types/short";
-import { epochToDatetime } from "@/utils/epochToDatetime";
+import { ShortUrl } from "@/lib/types/short";
+import { epochToDatetime } from "@/lib/utils/epochToDatetime";
 
 export default function MainUrlsSection() {
   const [links, setLinks] = useState<ShortUrl[]>([]);

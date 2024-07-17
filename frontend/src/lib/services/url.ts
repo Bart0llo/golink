@@ -1,6 +1,6 @@
 import { env } from "next-runtime-env";
-import { CreateShortUrlDto } from "../types/short";
-import { SHORT_URL } from "@/utils/constants";
+import { CreateShortUrlDto } from "@/lib/types/short";
+import { SHORT_URL } from "@/lib/utils/constants";
 
 const createShort = async (data: CreateShortUrlDto) => {
   const apiURL = env("NEXT_PUBLIC_API_URL");

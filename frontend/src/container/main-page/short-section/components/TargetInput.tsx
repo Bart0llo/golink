@@ -1,7 +1,7 @@
 import { Input } from "@mantine/core";
 import { BsLink45Deg } from "react-icons/bs";
 import style from "./shortform.module.css";
-import { ShortUrlResponse } from "@/types/short";
+import { ShortUrlResponse } from "@/lib/types/short";
 
 type TargetInputProps = {
   form: any;

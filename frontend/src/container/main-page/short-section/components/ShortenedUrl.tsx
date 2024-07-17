@@ -1,6 +1,6 @@
 import { Input } from "@mantine/core";
 import style from "./shortform.module.css";
-import { ShortUrlResponse } from "@/types/short";
+import { ShortUrlResponse } from "@/lib/types/short";
 
 type ShortenedUrlProps = {
   short: ShortUrlResponse;

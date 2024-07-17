@@ -1,4 +1,4 @@
-import { ShortUrlResponse } from "@/types/short";
+import { ShortUrlResponse } from "@/lib/types/short";
 import { Button, CopyButton, Group } from "@mantine/core";
 import { FaCopy, FaMagic } from "react-icons/fa";
 

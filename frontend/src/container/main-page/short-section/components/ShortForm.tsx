@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 
-import { CreateShortUrlDto, ShortUrlResponse } from "@/types/short";
-import { createShort } from "@/services/url";
+import { CreateShortUrlDto, ShortUrlResponse } from "@/lib/types/short";
+import { createShort } from "@/lib/services/url";
 
 import style from "./shortform.module.css";
 import { env } from "next-runtime-env";
@@ -14,7 +14,7 @@ import TargetInput from "./TargetInput";
 import MetaTagsCheckbox from "./MetaTagsCheckbox";
 import ShortenedUrl from "./ShortenedUrl";
 import Actions from "./Actions";
-import { addLink } from "@/utils/userLinks";
+import { addLink } from "@/lib/utils/userLinks";
 
 export default function ShortForm() {
   const redirectDomain = env("NEXT_PUBLIC_REDIRECT_URL");
