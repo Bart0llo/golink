@@ -20,7 +20,7 @@ export function addLink(link: ShortUrl) {
     const links: ShortUrl[] = JSON.parse(
       localStorage.getItem(LINKS_KEY) || "[]"
     );
-    localStorage.setItem("links", JSON.stringify([...links, link]));
+    localStorage.setItem(LINKS_KEY, JSON.stringify([...links, link]));
   } catch (error) {
     console.error(error);
   }
