@@ -15,8 +15,10 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { link: "/", name: "Home" },
+  /* 
   { link: "/statistics", name: "URL Stats" },
   { link: "/reports", name: "Report URL" },
+  */
 ];
 
 export default function Header() {
