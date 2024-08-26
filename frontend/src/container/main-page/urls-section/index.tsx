@@ -68,10 +68,9 @@ export default function MainUrlsSection() {
       </Table.Td>
       <Table.Td>
         <Link href={link.target} target="_blank">
-          {truncateText(link.target, 30)}
+          {truncateText(link.target, 60)}
         </Link>
       </Table.Td>
-      <Table.Td>{link.clicks || 0}</Table.Td>
       <Table.Td>{timeStamps[link.shortCode] || "-"}</Table.Td>
     </Table.Tr>
   ));
@@ -85,7 +84,6 @@ export default function MainUrlsSection() {
               <Table.Tr>
                 <Table.Td>Short link</Table.Td>
                 <Table.Td>Original link</Table.Td>
-                <Table.Td>Clicks</Table.Td>
                 <Table.Td>Created at</Table.Td>
               </Table.Tr>
             </Table.Thead>
