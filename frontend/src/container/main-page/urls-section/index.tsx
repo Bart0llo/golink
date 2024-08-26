@@ -3,27 +3,19 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "@mantine/core";
 import style from "./style.module.css";
-import { userLinks } from "@/lib/utils/userLinks";
 import Link from "next/link";
 import { truncateText } from "@/lib/utils/truncateText";
 import { env } from "next-runtime-env";
 import { ShortUrl } from "@/lib/types/short";
 import { epochToDatetime } from "@/lib/utils/epochToDatetime";
+import { useUrls } from "@/lib/context/UrlsContext";
 
 export default function MainUrlsSection() {
-  const [links, setLinks] = useState<ShortUrl[]>([]);
-
-  useEffect(() => {
-    // TODO: make a request handler to the backend for clicks and sync data from backend to local storage
-    const fetchedLinks = userLinks();
-    if (fetchedLinks) {
-      setLinks(fetchedLinks);
-    }
-  }, []);
+  const { urls } = useUrls();
 
   const redirectLink = env("NEXT_PUBLIC_REDIRECT_URL");
 
-  const renderLinks = links.map((link) => (
+  const renderLinks = urls.map((link) => (
     <Table.Tr key={link.shortCode}>
       <Table.Td>
         <Link href={`${redirectLink}/${link.shortCode}`} target="_blank">
@@ -54,7 +46,7 @@ export default function MainUrlsSection() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {!links.length ? (
+              {!urls.length ? (
                 <Table.Tr>
                   <Table.Td colSpan={4}>No links found</Table.Td>
                 </Table.Tr>

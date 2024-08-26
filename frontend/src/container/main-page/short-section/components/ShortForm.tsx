@@ -14,10 +14,11 @@ import TargetInput from "./TargetInput";
 import MetaTagsCheckbox from "./MetaTagsCheckbox";
 import ShortenedUrl from "./ShortenedUrl";
 import Actions from "./Actions";
-import { addLink } from "@/lib/utils/userLinks";
+import { useUrls } from "@/lib/context/UrlsContext";
 
 export default function ShortForm() {
   const redirectDomain = env("NEXT_PUBLIC_REDIRECT_URL");
+  const { addLink } = useUrls();
 
   const [loading, setLoading] = useState(false);
   const [short, setShort] = useState<ShortUrlResponse>();

@@ -6,6 +6,7 @@ import { Notifications } from "@mantine/notifications";
 import Script from "next/script";
 import { PublicEnvScript, env } from "next-runtime-env";
 import { Metadata } from "next";
+import { UrlsProvider } from "@/lib/context/UrlsContext";
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +33,7 @@ export default function RootLayout({
       <body>
         <MantineProvider defaultColorScheme="dark">
           <Notifications position="top-right" />
-          {children}
+          <UrlsProvider>{children}</UrlsProvider>
         </MantineProvider>
 
         <Script
