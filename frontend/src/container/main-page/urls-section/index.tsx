@@ -6,14 +6,58 @@ import style from "./style.module.css";
 import Link from "next/link";
 import { truncateText } from "@/lib/utils/truncateText";
 import { env } from "next-runtime-env";
-import { ShortUrl } from "@/lib/types/short";
 import { epochToDatetime } from "@/lib/utils/epochToDatetime";
 import { useUrls } from "@/lib/context/UrlsContext";
 
+type TimeStamps = {
+  [key: string]: string;
+};
+
 export default function MainUrlsSection() {
   const { urls } = useUrls();
+  const [timeStamps, setTimeStamps] = useState<TimeStamps>({});
 
   const redirectLink = env("NEXT_PUBLIC_REDIRECT_URL");
+
+  useEffect(() => {
+    const updateTimestamps = () => {
+      const newTimeStamps: TimeStamps = {};
+      const now = new Date().getTime();
+
+      urls.forEach((link) => {
+        const createdTime = link.createdAt * 1000;
+        const diffMinutes = (now - createdTime) / (1000 * 60);
+
+        if (diffMinutes < 2) {
+          newTimeStamps[link.shortCode] = epochToDatetime(link.createdAt);
+        } else if (!timeStamps[link.shortCode]) {
+          newTimeStamps[link.shortCode] = epochToDatetime(link.createdAt);
+        }
+      });
+
+      setTimeStamps((prev) => ({ ...prev, ...newTimeStamps }));
+    };
+
+    updateTimestamps();
+
+    const interval = setInterval(() => {
+      updateTimestamps();
+
+      const allOlderThan2Minutes = urls.every((link) => {
+        const now = new Date().getTime();
+        const createdTime = link.createdAt * 1000;
+        const diffMinutes = (now - createdTime) / (1000 * 60);
+        return diffMinutes >= 2;
+      });
+
+      if (allOlderThan2Minutes) {
+        clearInterval(interval);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urls]);
 
   const renderLinks = urls.map((link) => (
     <Table.Tr key={link.shortCode}>
@@ -28,7 +72,7 @@ export default function MainUrlsSection() {
         </Link>
       </Table.Td>
       <Table.Td>{link.clicks || 0}</Table.Td>
-      <Table.Td>{epochToDatetime(link.createdAt)}</Table.Td>
+      <Table.Td>{timeStamps[link.shortCode] || "-"}</Table.Td>
     </Table.Tr>
   ));
 
