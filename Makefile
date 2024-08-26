@@ -69,8 +69,8 @@ clean:
 
 # Build Docker image for frontend
 build-frontend:
-	cd $(FRONTEND_DIR) && sudo docker build -t $(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) .
+	cd $(FRONTEND_DIR) && sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) .
 
 # Build Docker image for backend
 build-backend:
-	cd $(BACKEND_DIR) && sudo docker build -t $(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) .
+	cd $(BACKEND_DIR) && sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) .
