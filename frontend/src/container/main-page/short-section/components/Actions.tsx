@@ -40,7 +40,6 @@ export default function Actions({
             onClick={copy}
             leftSection={<FaCopy />}
             data-umami-event="Copy url button"
-            data-umami-event-shortCode={short.shortCode}
           >
             {copied ? "Copied url" : "Copy url"}
           </Button>

@@ -47,7 +47,7 @@ export default function ShortForm() {
     setLoading(false);
     setShort(res);
     addLink(res);
-    window.umami.track("Short url created", { shortCode: res.shortCode });
+    window.umami.track("Short url created");
   };
 
   return (
