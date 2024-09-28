@@ -29,6 +29,8 @@ help:
 	@echo "  clean             - Clean node_modules in both frontend and backend"
 	@echo "  build-frontend    - Build Docker image for frontend"
 	@echo "  build-backend     - Build Docker image for backend"
+	@echo "  push-frontend     - Push Docker image for frontend"
+	@echo "  push-backend      - Push Docker image for backend"
 
 # Run development environment
 dev:
@@ -69,8 +71,22 @@ clean:
 
 # Build Docker image for frontend
 build-frontend:
-	cd $(FRONTEND_DIR) && sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) .
+	cd $(FRONTEND_DIR) && \
+	sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) . && \
+	sudo docker tag ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):latest
 
 # Build Docker image for backend
 build-backend:
-	cd $(BACKEND_DIR) && sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) .
+	cd $(BACKEND_DIR) && \
+	sudo docker build -t ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) . && \
+	sudo docker tag ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):latest
+
+# Push frontend image to the registry
+push-frontend:
+	sudo docker push ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):v$(VERSION) && \
+	sudo docker push ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_FRONTEND):latest
+
+# Push backend image to the registry
+push-backend:
+	sudo docker push ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):v$(VERSION) && \
+	sudo docker push ghcr.io/bart0llo/$(DOCKER_IMAGE_NAME_BACKEND):latest
