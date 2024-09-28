@@ -32,7 +32,13 @@ export function UrlsProvider({ children }: any) {
 
   // Add link
   const addLink = (link: ShortUrl) => {
-    setUrls((prevItems) => [link, ...prevItems]);
+    setUrls((prevItems) => {
+      // If the length exceeds 15, remove the oldest one (last item in the array)
+      if (prevItems.length >= 15) {
+        return [link, ...prevItems.slice(0, 14)];
+      }
+      return [link, ...prevItems];
+    });
   };
 
   return (
